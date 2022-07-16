@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.DigitalReceiptPage.ReceiptPage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:ReceiptViewModel">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#0066CC">
+            <Frame HorizontalOptions="CenterAndExpand" WidthRequest="330" VerticalOptions="CenterAndExpand" HeightRequest="300">
+                <StackLayout>
+                    <Label Text="Kerlyn Liner" HorizontalTextAlignment="Center" TextColor="Black" FontSize="Title" FontAttributes="Bold"/>
+                    <Label Text="{Binding Purpose}" Padding="0,0,0,20" HorizontalTextAlignment="Center" TextColor="Black" FontSize="Body" FontAttributes="Bold"/>
+                    <Label Text="Transaction Details:" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                            <Label Text="Date" TextColor="Gray" FontSize="Body" FontAttributes="Bold"/>
+                            <Label Text="Amount" TextColor="Gray" FontSize="Body" FontAttributes="Bold"/>
+                            <Label Text="Passenger ID" TextColor="Gray" FontSize="Body" FontAttributes="Bold"/>
+                            <Label Text="Reference ID" TextColor="Gray" FontSize="Body" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding Date}" TextColor="Black" FontSize="Body" FontAttributes="Bold"/>
+                            <Label Text="{Binding Amount}" TextColor="Black" FontSize="Body" FontAttributes="Bold"/>
+                            <Label Text="{Binding Passenger_ID}" TextColor="Black" FontSize="Body" FontAttributes="Bold"/>
+                            <Label Text="{Binding Reference_ID}" TextColor="Black" FontSize="Body" FontAttributes="Bold"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

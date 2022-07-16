@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.ConductorPage.PassengerConfirmationPage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             xmlns:properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             x:DataType="ViewModel:ConductorViewModel"
+             Title="Confirmation" IconImageSource="icons8_confirm_48.png">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame BackgroundColor="#0066CC" HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label Text="Passenger Confirmation" FontSize="Title" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Passengers for Confirmation:" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                    <Label Text="{Binding ConfirmationCount}" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                </StackLayout>
+            </Frame>
+            <RefreshView IsRefreshing="{Binding isRefreshing}" Command="{Binding RefreshCommand}">
+                <CollectionView ItemsSource="{Binding PassengerConfirmation}" 
+                            SelectionMode="Single" SelectedItem="{Binding SelectedPassenger_Confirmation}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="2">
+                                <StackLayout HorizontalOptions="FillAndExpand">
+                                    <Frame BorderColor="LightGray" BackgroundColor="Transparent" CornerRadius="10">
+                                        <StackLayout Orientation="Vertical" x:DataType="properties:PassengerRecords_Data">
+                                            <StackLayout Orientation="Horizontal" >
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                    <Label Text="Passenger ID:" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding PassengerID}" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                <StackLayout>
+                                                    <Label Text="Name:" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding PassengerName}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                                <StackLayout HorizontalOptions="EndAndExpand">
+                                                    <Label Text="Contact Number" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding PassengerContactNumber}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+            <Frame BorderColor="LightGray">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="Cancel" Command="{Binding CancelPassengerCommand}" TextColor="White" FontAttributes="Bold" WidthRequest="170" FontSize="Body" BackgroundColor="#0066CC"/>
+                    <Button Text="Confirm" Command="{Binding ConfirmPassengerCommand}" TextColor="White" FontAttributes="Bold" WidthRequest="170" FontSize="Body" BackgroundColor="#0066CC"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.LoginPage.AccountCreatedInfoPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label Text="Awesome !!"
+                           TextColor="Black"
+                           FontSize="Medium"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="CenterAndExpand"/>
+                <Label Text="You have created your account."
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontSize="Medium"
+                           VerticalOptions="Center" 
+                           HorizontalOptions="CenterAndExpand" />
+                <Button x:Name="btnBackToLogin" 
+                        Text="Continue to Sign In Page" 
+                        BackgroundColor="#0066CC" 
+                        HorizontalOptions="Center" 
+                        FontSize="Medium" 
+                        FontAttributes="Bold"
+                        Clicked="btnBackToLogin_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

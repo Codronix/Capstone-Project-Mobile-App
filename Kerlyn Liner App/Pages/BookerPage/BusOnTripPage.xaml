@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.BookerPage.BusOnTripPage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:BookerViewModel"
+             xmlns:Properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             Title="Busses on Trip" IconImageSource="icons8_bus_route_48.png">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <CollectionView ItemsSource="{Binding BussesOnTrip}" SelectionMode="Single" SelectedItem="{Binding SelectedBusOnTrip}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="2">
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                                <Frame BorderColor="LightGray" BackgroundColor="Transparent" CornerRadius="10">
+                                    <StackLayout Orientation="Vertical" x:DataType="Properties:BusTripRecords_Data">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Travel ID:" VerticalTextAlignment="Center" FontSize="Body" TextColor="Black" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Travel_ID}" VerticalTextAlignment="Center" FontSize="Body" TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                            <Label Text="Bus Number:" VerticalTextAlignment="Center" FontSize="Body" TextColor="Black" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Bus_Number}" VerticalTextAlignment="Center" FontSize="Body" TextColor="Black"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Bus Route:" VerticalTextAlignment="Center" FontSize="Body" TextColor="Black" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Bus_Route}" FontSize="Medium" TextColor="Black"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame BorderColor="LightGray">
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <Button BackgroundColor="#0066CC" FontSize="Body" FontAttributes="Bold" TextColor="White" Command="{Binding BusArrivedCommand}" Text="Bus Arrived"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

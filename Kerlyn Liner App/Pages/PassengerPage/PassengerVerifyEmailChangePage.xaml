@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customrenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             x:Class="Kerlyn_Liner_App.Pages.PassengerPage.PassengerVerifyEmailChangePage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:VerifyChangeEmailViewModel">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame>
+                <StackLayout>
+                    <Label Text="Enter Password:" TextColor="Gray" FontSize="Body" FontAttributes="Bold"/>
+                    <customrenderer:CustomEntry Text="{Binding InputedPassword}" TextColor="Black" IsPassword="True" FontAttributes="Bold" FontSize="Body"/>
+                    <Label Text="Enter email verification code sent to:" TextColor="Gray" FontSize="Body" FontAttributes="Bold"/>
+                    <Label Text="{Binding NewEmail}" TextColor="Black" FontSize="Body" FontAttributes="Bold"/>
+                    <customrenderer:CustomEntry Text="{Binding InputedVerificationCode}"  TextColor="Black" FontAttributes="Bold" FontSize="Body" Keyboard="Numeric"/>
+                    <Button Text="Confirm Change" Command="{Binding VerifyChangeCommand}" BackgroundColor="#0066CC" FontSize="Body" FontAttributes="Bold" HorizontalOptions="Center" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             x:Class="Kerlyn_Liner_App.Pages.BookerPage.BookerTransactionsPage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:TransactionsViewModel">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="white" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame BackgroundColor="#0066CC">
+                <Label Text="Recent Transactions" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="Title" FontAttributes="Bold"/>
+            </Frame>
+            <Frame BorderColor="#0066CC" VerticalOptions="FillAndExpand" CornerRadius="20">
+                <CollectionView ItemsSource="{Binding Transaction_LIST}" SelectionMode="Single" SelectedItem="{Binding SelectedTransaction}" SelectionChangedCommand="{Binding SelectionCommand}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="2"  HorizontalOptions="Center">
+                                <StackLayout HorizontalOptions="FillAndExpand">
+                                    <Frame BorderColor="LightGray" CornerRadius="10">
+                                        <StackLayout Orientation="Horizontal" x:DataType="properties:Transactions_Data" >
+                                            <StackLayout HorizontalOptions="FillAndExpand" >
+                                                <Label Text="Transaction Purpose:" HorizontalTextAlignment="Center" FontSize="Small" TextColor="Gray" FontAttributes="Bold"/>
+                                                <Label Text="{Binding Purpose}" HorizontalTextAlignment="Center" FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="EndAndExpand" >
+                                                <Label Text="{Binding Transac_Date}" HorizontalTextAlignment="Center" FontSize="Small" TextColor="Gray" FontAttributes="Bold"/>
+                                                <Label Text="{Binding Amount}" FontSize="Small" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

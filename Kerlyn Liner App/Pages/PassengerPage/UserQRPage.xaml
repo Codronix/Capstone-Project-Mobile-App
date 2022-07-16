@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.PassengerPage.UserQRPage"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:PassengersViewModel">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#0066CC" >
+            <Frame CornerRadius="20" Margin="20" VerticalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Label Text="ALLOW CONDUCTOR TO SCAN QR" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="Black" FontSize="Title"/>
+                    <zxing:ZXingBarcodeImageView
+                        IsVisible="true"
+                        BarcodeFormat="QR_CODE"
+                        HeightRequest="500"
+                        WidthRequest="500"
+                        BarcodeValue="{Binding Account_ID}">
+                        <zxing:ZXingBarcodeImageView.BarcodeOptions >
+                            <zxcm:EncodingOptions Width="500" Height="500"/>
+                        </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                    </zxing:ZXingBarcodeImageView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

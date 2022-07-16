@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.BookerPage.BookerBusTravelHistoryPage"
+             xmlns:CustomeRenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:BookerViewModel"
+             xmlns:Properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             Title="Bus Travel History" IconImageSource="icons8_bus_48_white.png">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame>
+                <StackLayout>
+                    <Label Text="Select Bus Number:" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                    <CustomeRenderer:CustomPicker TextColor="Black" FontSize="Medium"
+                                                  ItemsSource="{Binding BusData}" ItemDisplayBinding="{Binding bus_number}" SelectedItem="{Binding SearchBusHistory}"/>
+                </StackLayout>
+            </Frame>
+            <Label Margin="19,0,0,0" Text="Bus Travel History:" TextColor="Black" FontSize="Large" FontAttributes="Bold"/>
+            <Frame VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <CollectionView ItemsSource="{Binding BusTripHistory}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout x:DataType="Properties:BusTripHistory_Data">
+                                    <Frame BorderColor="Gray" CornerRadius="10">
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Date:" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                                                <Label Text="{Binding Date}" TextColor="Black" FontSize="Medium"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Bus Route:" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                                                <Label Text="{Binding BusRoute}" TextColor="Black" FontSize="Medium"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Driver 1:" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                                                <Label Text="{Binding BusDriverID_1}" TextColor="Black" FontSize="Medium"/>
+                                                <Label Text="{Binding BusDriverName_1}" TextColor="Black" FontSize="Medium"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Driver 2:" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                                                <Label Text="{Binding BusDriverID_2}" TextColor="Black" FontSize="Medium"/>
+                                                <Label Text="{Binding BusDriverName_2}" TextColor="Black" FontSize="Medium"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Conductor:" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                                                <Label Text="{Binding BusConductorID}" TextColor="Black" FontSize="Medium"/>
+                                                <Label Text="{Binding BusConductorName}" TextColor="Black" FontSize="Medium"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

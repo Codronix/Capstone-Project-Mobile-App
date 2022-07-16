@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.BookerPage.BalanceLoadingPage"
+             xmlns:viewmodel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             xmlns:CustomeEntry="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             xmlns:properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             x:DataType="viewmodel:BookerViewModel"
+             Title="Loading" IconImageSource="icons8_deposit_48.png">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame BackgroundColor="#0066CC">
+                <Label Text="Account Loading" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="Title" FontAttributes="Bold"/>
+            </Frame>
+            <Frame BorderColor="#0066CC" CornerRadius="20" Margin="10">
+                <StackLayout>
+                    <Label Text="Account ID:" FontSize="Body" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                    <CustomeEntry:CustomEntry Text="{Binding AccountID}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+                    <Label Text="Enter Amount:" FontSize="Body" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+                    <CustomeEntry:CustomEntry Text="{Binding LoadAmount}" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" TextColor="Black" Keyboard="Numeric"/>
+                    <Button Text="Load Account" Command="{Binding LoadAccountCommand}" TextColor="White" FontSize="Body" FontAttributes="Bold" HorizontalOptions="EndAndExpand" BackgroundColor="#0066CC"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

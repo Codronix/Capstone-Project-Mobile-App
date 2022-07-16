@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.MainPage"
+             xmlns:viewmodel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             xmlns:CustomRenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             x:DataType="viewmodel:LoginViewModel">
+
+    <StackLayout x:Name="MasterLayout" BackgroundColor="#0066CC">
+        <StackLayout Padding="30" VerticalOptions="Center">
+            <Image x:Name="LogoIcon"
+                   Source="LOGO.png"
+                   HeightRequest="200"/>
+        </StackLayout>
+        <StackLayout>
+            <Frame BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="20">
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                    <ActivityIndicator x:Name="ActivityIndicator" IsRunning="False" Color="#0066CC"/>
+                    <CustomRenderer:CustomEntry Placeholder="USERNAME"
+                                                Text="{Binding Username}"
+                                                x:Name="Entry_Username"
+                                                PlaceholderColor="LightSlateGray"
+                                                HorizontalTextAlignment="Center"
+                                                TextColor="Black" 
+                                                FontSize="Medium"
+                                                FontAttributes="Bold"
+                                                CharacterSpacing="2"/>
+                    <CustomRenderer:CustomEntry Placeholder="PASSWORD"
+                                                Text="{Binding Password}"
+                                                x:Name="Entry_Password"
+                                                PlaceholderColor="LightSlateGray"
+                                                HorizontalTextAlignment="Center"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="Black"
+                                                FontSize="Medium"
+                                                IsPassword="True"
+                                                FontAttributes="Bold"
+                                                CharacterSpacing="2"/>
+                    <Button Text="Sign In"
+                            Command="{Binding SignInCommand}"
+                            TextColor="White" 
+                            FontSize="Medium" 
+                            FontAttributes="Bold" 
+                            BackgroundColor="#0066CC" 
+                            CornerRadius="30"
+                            Margin="70,20,70,0"/>
+                    <Label Text="_____________________ OR ______________________"
+                           HorizontalTextAlignment="Center" 
+                           FontAttributes="Bold" 
+                           TextColor="#0066CC"
+                           Margin="-20,20,-20,20"/>
+                    <Button Text="Create Account"
+                            Command="{Binding SignUpCommand}"
+                            FontAttributes="Bold" 
+                            FontSize="Medium" 
+                            TextColor="#0066CC" 
+                            BackgroundColor="White"
+                            Margin="70,0,70,0"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+        <Button Text="Reset Password" HorizontalOptions="Center" VerticalOptions="End" BackgroundColor="#0066CC" TextColor="White" Command="{Binding ResetPasswordCommand}"/>
+    </StackLayout>
+</ContentPage>

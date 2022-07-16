@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.ConductorPage.QR_ScanPage"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:QR_ScanViewModel">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#0066CC" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+            <Frame VerticalOptions="CenterAndExpand">
+                <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="White">
+                    <zxing:ZXingScannerView
+                        IsScanning="{Binding IsScanning, Mode=TwoWay}"
+                        ScanResultCommand="{Binding ScanCommand}"
+                        Result="{Binding Result, Mode=TwoWay}"
+                        WidthRequest="300"
+                        HeightRequest="300"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"/>
+                    <zxing:ZXingDefaultOverlay TopText="Align barcode within the frame"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

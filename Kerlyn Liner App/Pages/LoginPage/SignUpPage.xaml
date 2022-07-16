@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.LoginPage.SignUpPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:CustomEntry="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:CreateAccountViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="invertBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20">
+                <StackLayout>
+                    <Label Text="Create an Account" FontSize="Title" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Email:" FontSize="Body" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start"/>
+                        <Label Text="(Your email helps us reset your password.)" FontSize="Body" TextColor="Gray" VerticalOptions="Center" HorizontalOptions="Start"/>
+                    </StackLayout>
+                    <CustomEntry:CustomEntry Text="{Binding Email}" TextColor="Black">
+                        <CustomEntry:CustomEntry.Behaviors>
+                            <xct:EmailValidationBehavior Flags="ValidateOnUnfocusing" IsValid="{Binding EmailValid}"/>
+                        </CustomEntry:CustomEntry.Behaviors>
+                    </CustomEntry:CustomEntry>
+                    <Label Text="Email is not valid." TextColor="Red" FontSize="Body" IsVisible="{Binding EmailValid, Converter={StaticResource invertBoolConverter}}"/>
+                    <Label Text="Username:" FontSize="Body" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <CustomEntry:CustomEntry Text="{Binding Username}" TextColor="Black">
+                        <CustomEntry:CustomEntry.Behaviors>
+                            <xct:TextValidationBehavior MinimumLength="6" IsValid="{Binding UsernameLengthAllowed}" Flags="ValidateOnUnfocusing"/>
+                        </CustomEntry:CustomEntry.Behaviors>
+                    </CustomEntry:CustomEntry>
+                    <Label Text="Username must contain atleast 6 characters." TextColor="Red" FontSize="Body" IsVisible="{Binding UsernameLengthAllowed, Converter={StaticResource invertBoolConverter}}"/>
+                    <Label Text="First Name:" FontSize="Body" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <CustomEntry:CustomEntry Text="{Binding FirstName}" TextColor="Black">
+                        <CustomEntry:CustomEntry.Behaviors>
+                            <xct:TextValidationBehavior MinimumLength="2" IsValid="{Binding FirstNameLengthAllowed}" Flags="ValidateOnUnfocusing" />
+                        </CustomEntry:CustomEntry.Behaviors>
+                    </CustomEntry:CustomEntry>
+                    <Label Text="First Name must contain atleast 2 characters." TextColor="Red" FontSize="Body" IsVisible="{Binding FirstNameLengthAllowed, Converter={StaticResource invertBoolConverter}}"/>
+                    <Label Text="Last Name:" FontSize="Body" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <CustomEntry:CustomEntry Text="{Binding LastName}" TextColor="Black">
+                        <CustomEntry:CustomEntry.Behaviors>
+                            <xct:TextValidationBehavior MinimumLength="2" IsValid="{Binding LastNameLengthAllowed}" Flags="ValidateOnUnfocusing" />
+                        </CustomEntry:CustomEntry.Behaviors>
+                    </CustomEntry:CustomEntry>
+                    <Label Text="Last Name must contain atleast 2 characters." TextColor="Red" FontSize="Body" IsVisible="{Binding LastNameLengthAllowed, Converter={StaticResource invertBoolConverter}}"/>
+                    <Label Text="Password:" FontSize="Body" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <CustomEntry:CustomEntry Text="{Binding Password}" TextColor="Black" IsPassword="True">
+                        <CustomEntry:CustomEntry.Behaviors>
+                            <xct:TextValidationBehavior MinimumLength="8" IsValid="{Binding PasswordLengthAllowed}" Flags="ValidateOnUnfocusing"/>
+                        </CustomEntry:CustomEntry.Behaviors>
+                    </CustomEntry:CustomEntry>
+                    <Label Text="Password must contain atleast 8 characters." TextColor="Red" FontSize="Body" IsVisible="{Binding PasswordLengthAllowed, Converter={StaticResource invertBoolConverter}}"/>
+                    <Label Text="Confirm Password:" FontSize="Body" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <CustomEntry:CustomEntry Text="{Binding Confirm_Password}" TextColor="Black" IsPassword="True">
+                        <CustomEntry:CustomEntry.Behaviors>
+                            <xct:RequiredStringValidationBehavior RequiredString="{Binding Password}" IsValid="{Binding PasswordMatch}" Flags="ValidateOnUnfocusing" />
+                        </CustomEntry:CustomEntry.Behaviors>
+                    </CustomEntry:CustomEntry>
+                    <Label Text="Please reconfirm password." TextColor="Red" FontSize="Body" IsVisible="{Binding PasswordMatch, Converter={StaticResource invertBoolConverter}}"/>
+                    <Button Text="Create Account" TextColor="White" Command="{Binding CreateAccountCommand}" FontAttributes="Bold" BackgroundColor="#0066CC" Margin="100,0,100,0"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

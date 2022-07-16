@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customrenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             x:Class="Kerlyn_Liner_App.Pages.LoginPage.EmailVerificationPage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:EmailVerificationViewModel">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame VerticalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Label Text="To continue the creation of your account,"
+                   TextColor="Black"
+                   HorizontalOptions="CenterAndExpand" />
+                    <Label Text="Please enter the verification code that we sent to:"
+                   TextColor="Black"
+                   HorizontalOptions="CenterAndExpand" />
+                    <Label Text="{Binding Email}"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="If you did not recieve any code,"
+                   TextColor="Black"
+                   HorizontalOptions="CenterAndExpand" />
+                    <Label Text="please make sure the email is correct and registered."
+                   TextColor="Black"
+                   HorizontalOptions="CenterAndExpand" />
+                    <customrenderer:CustomEntry Placeholder="Verification Code"
+                                        PlaceholderColor="Gray"
+                                        Keyboard="Numeric" 
+                                        TextColor="Black" 
+                                        FontAttributes="Bold"
+                                        HorizontalTextAlignment="Center" 
+                                        Text="{Binding InputCode}"/>
+                    <Button Text="Verify" 
+                            BackgroundColor="#0066CC" 
+                            HorizontalOptions="Center" 
+                            FontAttributes="Bold"
+                            Command="{Binding VerifyCommand}"/>
+                </StackLayout>
+            </Frame>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

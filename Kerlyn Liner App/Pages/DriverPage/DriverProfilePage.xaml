@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.DriverPage.DriverProfilePage"
+             Title="My Profile" IconImageSource="outline_account_circle_white_24dp.png"
+             xmlns:viewmodel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="viewmodel:DriverViewModel">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Label Margin="15,15,0,0" Text="Employee Details" FontAttributes="Bold"  TextColor="#0066CC" FontSize="Large"/>
+            <Frame>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Employee Number:" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                        <Label x:Name="lblEmployeeNumber" Text="{Binding Employee_Number}"  TextColor="Black" FontSize="Body"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Employee Name:" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                        <Label x:Name="lblFullName" Text="{Binding FullName}" TextColor="Black" FontSize="Body"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Employee Position:" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                        <Label x:Name="lblAssignedTo" Text="{Binding Assigned_To}" TextColor="Black" FontSize="Body"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Label Margin="15,0,0,0" Text="Account Security" FontAttributes="Bold"  TextColor="#0066CC" FontSize="Large"/>
+            <Frame>
+                <Button Text="Change Password"
+                        TextColor="white"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        BackgroundColor="#0066CC"
+                        Command="{Binding OpenChangePasswordPageCommand}"/>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

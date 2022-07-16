@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:CustomRenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             x:Class="Kerlyn_Liner_App.Pages.BookerPage.BookerPassengerRecordsPage"
+             xmlns:Properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:BookerViewModel"
+             Title="Passenger History" IconImageSource="icons8_get_on_bus_48.png">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Select Date:" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black"/>
+                        <DatePicker TextColor="Black" HorizontalOptions="FillAndExpand" FontSize="Medium"
+                                    Date="{Binding SelectedDate}" Format="MM/dd/yyyy"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Passenger ID:" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black"/>
+                        <CustomRenderer:CustomEntry Text="{Binding SearchID}" HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="Medium"/>
+                    </StackLayout>
+                    <Button Text="Search" Command="{Binding SearchID_COMMAND}" BackgroundColor="#0066CC" TextColor="White" FontSize="Medium" FontAttributes="Bold"/>
+                </StackLayout>
+            </Frame>
+            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label Text="Trip History" TextColor="Black" FontSize="Large" FontAttributes="Bold"/>
+                    <CollectionView ItemsSource="{Binding PassengerHistory}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="2">
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Frame BorderColor="LightGray" CornerRadius="10">
+                                            <StackLayout Orientation="Vertical" x:DataType="Properties:PassengerRecords_Data">
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                    <Label Text="Date:" FontSize="Small" TextColor="Gray" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding Date_Of_Trip}" FontSize="Small" TextColor="Gray" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                    <Label Text="{Binding Boarded}" FontSize="Small" TextColor="Gray" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                    <StackLayout>
+                                                        <Label Text="Name:" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                        <Label Text="{Binding PassengerName}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                    </StackLayout>
+                                                    <StackLayout HorizontalOptions="EndAndExpand">
+                                                        <Label Text="Contact Number" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                        <Label Text="{Binding PassengerContactNumber}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

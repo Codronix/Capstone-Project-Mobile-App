@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.ConductorPage.PassengerListPage"
+             Title="Passenger List" IconImageSource="icons8_block_chain_48.png"
+             xmlns:viewmodel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             xmlns:properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             x:DataType="viewmodel:ConductorViewModel">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame BackgroundColor="#0066CC" HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label Text="Passenger List" FontSize="Title" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+                </StackLayout>
+            </Frame>
+            <CollectionView ItemsSource="{Binding PassengerList}" SelectionMode="Single" SelectedItem="{Binding SelectedPassenger}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="2">
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                                <Frame BorderColor="LightGray" BackgroundColor="Transparent" CornerRadius="10">
+                                    <StackLayout Orientation="Vertical" x:DataType="properties:PassengerRecords_Data">
+                                        <StackLayout Orientation="Horizontal" >
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                <Label Text="Passenger ID:" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                <Label Text="{Binding PassengerID}" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <StackLayout>
+                                                <Label Text="Name:" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                <Label Text="{Binding PassengerName}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="EndAndExpand">
+                                                <Label Text="Contact Number" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                <Label Text="{Binding PassengerContactNumber}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame BorderColor="LightGray">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Button HorizontalOptions="FillAndExpand" BackgroundColor="Red" FontSize="Body" WidthRequest="120" FontAttributes="Bold" TextColor="White" Command="{Binding RefundPayment}" Text="Refund"/>
+                        <Button HorizontalOptions="FillAndExpand" BackgroundColor="Red" FontSize="Body" WidthRequest="120" FontAttributes="Bold" TextColor="White" Command="{Binding UnboardPassenger}" Text="Unboard"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Button HorizontalOptions="FillAndExpand" Padding="-20,0,-20,0" BackgroundColor="#0066CC" FontSize="Body" FontAttributes="Bold" TextColor="White" Command="{Binding TransferAllPassengerCommand}" Text="Transfer All"/>
+                        <Button HorizontalOptions="FillAndExpand" BackgroundColor="#0066CC" FontSize="Body" FontAttributes="Bold" TextColor="White" Command="{Binding TransferPassengerCommand}" Text="Transfer"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

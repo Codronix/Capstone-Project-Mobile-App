@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="Kerlyn_Liner_App.Pages.PassengerPage.PassengerTabbedPage"
+            xmlns:Local="clr-namespace:Kerlyn_Liner_App.Pages.PassengerPage"
+            BarBackgroundColor="#0066CC" BarTextColor="White"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.BarItemColor="#66FFFFFF"
+            android:TabbedPage.BarSelectedItemColor="White">
+  <!--Pages can be added as references or inline-->
+    <Local:PassengerMainPage></Local:PassengerMainPage>
+    <Local:PassengerBusOnTripPage></Local:PassengerBusOnTripPage>
+</TabbedPage>

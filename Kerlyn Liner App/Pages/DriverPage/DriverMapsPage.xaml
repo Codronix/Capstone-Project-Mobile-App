@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.DriverPage.DriverMapsPage"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:viewmodel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             Title="Navigation" IconImageSource="outline_my_location_white_24dp.png"
+             x:DataType="viewmodel:DriverViewModel"
+             xmlns:locals="clr-namespace:Kerlyn_Liner_App.Pages.DriverPage"
+             locals:DriverMapsPage.VMString="{Binding TravelID}">
+    <ContentPage.Content>
+        <RelativeLayout >
+            <maps:Map x:Name="map"
+                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
+                      RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=1}"/>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Start"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=1}">
+                <Frame BackgroundColor="#0066CC" Margin="10" WidthRequest="311" HeightRequest="30" CornerRadius="15" HasShadow="True" >
+                    <StackLayout x:Name="Passenger_Counter_Layout" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Horizontal">
+                        <Image Source="icons8_passenger_48.png"/>
+                        <Label Text=":" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="{Binding Count_Total_Passenger}" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                        <Image Source="icons8_sitting_on_chair_48.png"/>
+                        <Label Text=":" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="{Binding Bus_Seats}" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="/" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="{Binding Count_Sitting}" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                        <Image Source="icons8_standing_man_48.png"/>
+                        <Label Text=":" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                        <Label Text="{Binding Count_Standing}" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="#0066CC" Margin="10,-13,10,0" Padding="5" WidthRequest="311" CornerRadius="5" HasShadow="True" >
+                    <StackLayout>
+                        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                            <Label Text="Travel ID:" TextColor="White" FontSize="Small" FontAttributes="Bold" />
+                            <Label Text="{Binding TravelID}" TextColor="White" FontSize="Small" FontAttributes="Bold" />
+                        </StackLayout>
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Orientation="Horizontal">
+                            <Label Text="Bus Number:" TextColor="White" FontSize="Small" FontAttributes="Bold" />
+                            <Label Text="{Binding BusNumber}" TextColor="White" FontSize="Small" FontAttributes="Bold" />
+                            <Label Text="-" TextColor="White" FontSize="Small" FontAttributes="Bold" />
+                            <Label Text="{Binding BusWayPoint}" TextColor="White" FontSize="Small" FontAttributes="Bold" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="End" Padding="40"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=1}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=1}">
+                <Button Text="Share Location"
+                        x:Name="btnShareLocation"
+                        Clicked="btnShareLocation_Clicked"
+                        TextColor="White" 
+                        BackgroundColor="#0066CC" 
+                        FontSize="18" 
+                        CornerRadius="10" 
+                        FontAttributes="Bold"
+                        VerticalOptions="End"/>
+            </StackLayout>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

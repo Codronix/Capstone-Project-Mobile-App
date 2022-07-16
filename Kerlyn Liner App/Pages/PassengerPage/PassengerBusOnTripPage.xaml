@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             x:Class="Kerlyn_Liner_App.Pages.PassengerPage.PassengerBusOnTripPage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:PassengersViewModel"
+             Title="Busses On Trip" IconImageSource="icons8_bus_48_white.png">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="white" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame BackgroundColor="#0066CC" HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label Text="Busses On Trip" FontSize="Title" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+                </StackLayout>
+            </Frame>
+            <CollectionView x:Name="MyCollectionView" ItemsSource="{Binding OnTrip_LIST}" SelectionMode="Single" SelectedItem="{Binding SelectedBus}" SelectionChangedCommand="{Binding SelectionCommand}" Margin="10">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="2">
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                                <Frame BackgroundColor="Transparent" BorderColor="LightGray" CornerRadius="10">
+                                    <StackLayout x:DataType="properties:BusTripRecords_Data">
+                                        <StackLayout Orientation="Horizontal" >
+                                            <StackLayout>
+                                                <ImageButton Source="icons8_marker_48.png" BackgroundColor="Transparent"/>
+                                                <Image Source="icons8_bus_48.png"/>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="FillAndExpand" >
+                                                <Label Text="Bus Number" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                <Label Text="{Binding Bus_Number}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                <Label Text="Way Point" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                <Label Text="{Binding Bus_Route }" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="FillAndExpand">
+                                                <Label Text="Seat Capacity:" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Bus_Sitting }" FontSize="Medium" TextColor="Black" FontAttributes="Bold" />
+                                                    <Label Text="/" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding Bus_Capacity}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                                <StackLayout>
+                                                    <Label Text="Standing:" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding Bus_Standing }" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <!--<Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference MyCollectionView}, Path=BindingContext.SelectionCommand}" NumberOfTapsRequired="1" />
+                                    </Frame.GestureRecognizers>-->
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

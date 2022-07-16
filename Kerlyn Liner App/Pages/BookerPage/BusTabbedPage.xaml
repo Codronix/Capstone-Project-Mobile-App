@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.BookerPage.BusTabbedPage"
+            xmlns:local="clr-namespace:Kerlyn_Liner_App.Pages.BookerPage"
+            Title="Bus" IconImageSource="icons8_bus_48_white.png">
+  <!--Pages can be added as references or inline-->
+    <local:BookerBusTripAuthorization></local:BookerBusTripAuthorization>
+    <local:BusOnTripPage></local:BusOnTripPage>
+</TabbedPage>

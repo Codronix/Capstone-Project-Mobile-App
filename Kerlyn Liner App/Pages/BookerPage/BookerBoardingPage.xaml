@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:CustomRenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             x:Class="Kerlyn_Liner_App.Pages.BookerPage.BookerBoardingPage"
+             Title="Payment" IconImageSource="icons8_peso_symbol_50.png"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:DataType="ViewModel:BookerViewModel">
+    <!--<ContentPage.BindingContext>
+        <ViewModel:BookerBoardingViewModel></ViewModel:BookerBoardingViewModel>
+    </ContentPage.BindingContext>-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="invertBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame BackgroundColor="#0066CC" Margin="10" HasShadow="True" CornerRadius="30"
+                   HeightRequest="30">
+                <StackLayout x:Name="Passenger_Counter_Layout" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Horizontal">
+                    <Image Source="icons8_passenger_48.png"/>
+                    <Label Text=":" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="{Binding Count_Total_Passenger}" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                    <Image Source="icons8_sitting_on_chair_48.png"/>
+                    <Label Text=":" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="{Binding Bus_Seats}" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="/" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="{Binding Count_Sitting}" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                    <Image Source="icons8_standing_man_48.png"/>
+                    <Label Text=":" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                    <Label Text="{Binding Count_Standing}" TextColor="White" FontSize="18" FontAttributes="Bold" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenPassengerListCommand}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Frame BackgroundColor="#0066CC" Padding="5">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Passengers Payment" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="White" FontSize="Title" FontAttributes="Bold"/>
+                    <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal" Background="#0066CC">
+                        <Button CornerRadius="20"
+                                Command="{Binding OpenTransactionsPageCommand}"
+                                BackgroundColor="#0066CC"
+                                TextColor="White"
+                                HorizontalOptions="EndAndExpand"
+                                ImageSource="icons8_deposit_48.png"
+                                HeightRequest="50" WidthRequest="50"/>
+                        <Button CornerRadius="20"
+                                BackgroundColor="#0066CC"
+                                Command="{Binding ScanQRCommand}"
+                                TextColor="White"
+                                HorizontalOptions="EndAndExpand"
+                                ImageSource="icons8_portrait_mode_scanning_50.png"
+                                HeightRequest="50" WidthRequest="50"/>
+                        
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <StackLayout Padding="20">
+                <ScrollView>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="Select Bus:" VerticalTextAlignment="Center" TextColor="Black" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                            <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0" HorizontalOptions="FillAndExpand">
+                                <CustomRenderer:CustomPicker
+                                        HorizontalTextAlignment="Center" 
+                                        FontAttributes="Bold" 
+                                        FontSize="Body" 
+                                        TextColor="Black" 
+                                        ItemsSource="{Binding BusData}" ItemDisplayBinding="{Binding bus_number}" SelectedItem="{Binding SelectedBus}"/>
+                            </Frame>
+                            
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Travel ID:  " TextColor="Black" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                            <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding BusTravel_ID}" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Way Point:" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                            <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Bus_Way_Point}" HorizontalOptions="Center" FontSize="Medium" TextColor="Black"/>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                                <Label Text="Area of Stop:" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                                <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0" HorizontalOptions="FillAndExpand">
+                                    <CustomRenderer:CustomPicker 
+                                        HorizontalTextAlignment="Center" 
+                                        FontAttributes="Bold" 
+                                        FontSize="Body" 
+                                        TextColor="Black"
+                                        ItemsSource="{Binding PassengerFareList}" ItemDisplayBinding="{Binding bus_stop}" SelectedItem="{Binding SelectedAreaOfStop}"/>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="FillAndExpand" >
+                                <Label Text="Fare:" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                                <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0">
+                                    <CustomRenderer:CustomEntry Text="{Binding Bus_Fare }" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" IsReadOnly="True" FontSize="Medium" TextColor="Black"/>
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" >
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Orientation="Horizontal">
+                                    <CheckBox x:Name="cbSeniorDiscount" IsChecked="{Binding isSeniorDiscount_Checked}" CheckedChanged="cbSeniorDiscount_CheckedChanged"/>
+                                    <Label Text="Senior Citizen Discount:" FontSize="Medium" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center"/>
+                                    <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                            <Label Text="{Binding SeniorDiscount}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                                            <Label Text="%" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <CheckBox x:Name="cbOrdinaryPassenger" IsChecked="{Binding isNormalPay}" CheckedChanged="cbOrdinaryPassenger_CheckedChanged"/>
+                                <Label Text="Normal Pay" FontSize="Medium" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center"/>
+                                <CheckBox x:Name="cbFreeOfCharge" IsChecked="{Binding isFreeOfCharge}" CheckedChanged="cbFreeOfCharge_CheckedChanged"/>
+                                <Label Text="Free of Charge" FontSize="Medium" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <Label Text="Passenger ID" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0" HorizontalOptions="FillAndExpand">
+                                <StackLayout>
+                                    <CustomRenderer:CustomEntry Text="{Binding GeneratedID}" IsReadOnly="True" Keyboard="Text" FontSize="Medium" TextColor="Black"
+                                                                HorizontalTextAlignment="Center" PlaceholderColor="Gray" IsVisible="{Binding isNewEntry, Converter={StaticResource invertBoolConverter}}"/>
+                                    <CustomRenderer:CustomPicker IsVisible="{Binding isNewEntry}"
+                                                                 HorizontalTextAlignment="Center" 
+                                                                 FontAttributes="Bold" 
+                                                                 FontSize="Body" 
+                                                                 TextColor="Black"
+                                                                 ItemsSource="{Binding OldPassengersList}" ItemDisplayBinding="{Binding PassengerID}" SelectedItem="{Binding SelectedPassenger}"/>
+                                </StackLayout>
+                            </Frame>
+                            <Button Text="{Binding NewPassenger_TEXT}" Command="{Binding NewPassengerCommand}" BackgroundColor="#0066CC" FontSize="Medium" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <Label Text="Passenger Name" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                        <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0">
+                            <CustomRenderer:CustomEntry Text="{Binding PassengerName}" Keyboard="Text" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Center" PlaceholderColor="Gray"/>
+                        </Frame>
+                        <Label Text="Passenger Contact Number" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                        <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0">
+                            <CustomRenderer:CustomEntry Text="{Binding PassengerContactNum}" Keyboard="Numeric" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Center" PlaceholderColor="Gray"/>
+                        </Frame>
+                        <Label Text="Amount Paid" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                        <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0">
+                            <CustomRenderer:CustomEntry Placeholder="0.00" Text="{Binding AmountPaid}" Keyboard="Numeric" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Center" PlaceholderColor="Gray"/>
+                        </Frame>
+                        <Label Text="Change" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                        <Frame BackgroundColor="LightGray" CornerRadius="20" Padding="0">
+                            <CustomRenderer:CustomEntry Placeholder="0.00" TextColor="Black" Text="{Binding AmountChange}" Keyboard="Numeric" IsReadOnly="True" FontSize="Medium" HorizontalTextAlignment="Center" PlaceholderColor="Gray"/>
+                        </Frame>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,0">
+                            <Button Text="Board"
+                                    Command="{Binding RegisterPayment}"
+                                    FontSize="Medium" 
+                                    FontAttributes="Bold" 
+                                    CornerRadius="20" 
+                                    BackgroundColor="#0066CC"
+                                    TextColor="White"
+                                    WidthRequest="150"/>
+                            <Button Text="Passengers"
+                                    Command="{Binding OpenPassengerListCommand}"
+                                    FontSize="Medium" 
+                                    FontAttributes="Bold" 
+                                    CornerRadius="20" 
+                                    BackgroundColor="#0066CC"
+                                    TextColor="White"
+                                    WidthRequest="150"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

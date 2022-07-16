@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:customrenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Kerlyn_Liner_App.Pages.LoginPage.EmployeeRegistrationPage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:EmployeeEmailRegistrationViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="invertBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout  BackgroundColor="White">
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Hello New Employee !" FontAttributes="Bold" TextColor="Black" FontSize="Body"/>
+                        <Label Text="To finish up your account creation, we require you to enter your email. Your email helps us reset your password." FontAttributes="Bold" TextColor="Black" FontSize="Body"/>
+                        <Label Text="Enter your email:" FontAttributes="Bold" TextColor="Gray" FontSize="Body"/>
+                        <Label Text="Please enter a valid registered email." FontAttributes="Bold" TextColor="red" FontSize="Small"/>
+                        <StackLayout>
+                            <customrenderer:CustomEntry Text="{Binding Email}" TextColor="Black" Keyboard="Email">
+                                <customrenderer:CustomEntry.Behaviors>
+                                    <xct:EmailValidationBehavior Flags="ValidateOnUnfocusing" IsValid="{Binding EmailValid}"/>
+                                </customrenderer:CustomEntry.Behaviors>
+                            </customrenderer:CustomEntry>
+                            <Label Text="Email is not valid." TextColor="Red" FontSize="Body" IsVisible="{Binding EmailValid, Converter={StaticResource invertBoolConverter}}"/>
+                        </StackLayout>
+                        <Button Text="Proceed" Command="{Binding ProceedCommand}" BackgroundColor="#0066CC" FontAttributes="Bold" TextColor="White" FontSize="Body" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

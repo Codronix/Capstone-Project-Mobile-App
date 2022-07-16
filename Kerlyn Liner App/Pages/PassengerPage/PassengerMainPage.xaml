@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.PassengerPage.PassengerMainPage"
+             xmlns:viewmodel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             xmlns:properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             x:DataType="viewmodel:PassengersViewModel"
+             Title="Home" IconImageSource="icons8_home_48.png">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="white" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame Margin="10" CornerRadius="10">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Button ImageSource="icons8_settings_24.png" Command="{Binding OpenSettingsCommand}" HorizontalOptions="Center" BackgroundColor="White" Margin="-10" WidthRequest="30" HeightRequest="30"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Image Source="icons8_male_user_48.png" HeightRequest="80"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                        <Label Text="{Binding FullName}" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                        <Label Text="Account ID: " TextColor="Gray" FontSize="Body" FontAttributes="Bold"/>
+                        <Label Text="{Binding Account_ID}" TextColor="Gray" FontSize="Body" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label Text="₱" TextColor="#0066CC" FontSize="50"/>
+                        <Label Text="{Binding Account_Balance}" TextColor="#0066CC" FontSize="50"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <StackLayout Orientation="Horizontal" Margin="10,0,10,-15">
+                <Label Text="Recent Transactions" TextColor="Black" FontSize="Medium" FontAttributes="Bold" Margin="10,0,0,0" VerticalOptions="Center"/>
+                <ImageButton Source="icons8_qr_code_48.png" Command="{Binding OpenQRCommand}" HeightRequest="40" BackgroundColor="White" HorizontalOptions="EndAndExpand" Margin="0,0,0,8"/>
+            </StackLayout>
+            <Frame>
+                <CollectionView ItemsSource="{Binding Transaction_LIST}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="2"  HorizontalOptions="Center">
+                                <StackLayout HorizontalOptions="FillAndExpand">
+                                    <Frame BorderColor="LightGray" CornerRadius="10">
+                                        <StackLayout Orientation="Horizontal" x:DataType="properties:Transactions_Data" >
+                                            <StackLayout HorizontalOptions="FillAndExpand" >
+                                                <Label Text="Transaction Purpose:" HorizontalTextAlignment="Center" FontSize="Small" TextColor="Gray" FontAttributes="Bold"/>
+                                                <Label Text="{Binding Purpose}" HorizontalTextAlignment="Center" FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="EndAndExpand" >
+                                                <Label Text="{Binding Transac_Date}" HorizontalTextAlignment="Center" FontSize="Small" TextColor="Gray" FontAttributes="Bold"/>
+                                                <Label Text="{Binding Amount}" FontSize="Small" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

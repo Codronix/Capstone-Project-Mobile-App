@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.DriverPage.DriverPassengerList"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             xmlns:properties="clr-namespace:Kerlyn_Liner_App.DataProperties"
+             x:DataType="ViewModel:DriverViewModel"
+             Title="Passenger List" IconImageSource="icons8_block_chain_48.png">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame BackgroundColor="#0066CC" HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label Text="Passenger List" FontSize="Title" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White"/>
+                </StackLayout>
+            </Frame>
+            <RefreshView IsRefreshing="{Binding isRefreshing}" Command="{Binding RefreshCommand}">
+                <CollectionView ItemsSource="{Binding PassengerList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="2">
+                                <StackLayout HorizontalOptions="FillAndExpand">
+                                    <Frame BorderColor="LightGray" BackgroundColor="Transparent" CornerRadius="10">
+                                        <StackLayout Orientation="Vertical" x:DataType="properties:PassengerRecords_Data">
+                                            <StackLayout Orientation="Horizontal" >
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                    <Label Text="Passenger ID:" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding PassengerID}" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                <StackLayout>
+                                                    <Label Text="Name:" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding PassengerName}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                                <StackLayout HorizontalOptions="EndAndExpand">
+                                                    <Label Text="Contact Number" FontSize="Body" TextColor="Gray" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding PassengerContactNumber}" FontSize="Medium" TextColor="Black" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

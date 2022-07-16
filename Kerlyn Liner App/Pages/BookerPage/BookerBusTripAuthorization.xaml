@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kerlyn_Liner_App.Pages.BookerPage.BookerBusTripAuthorization"
+             xmlns:CustomRenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             Title="Authorize" IconImageSource="icons8_clipboard_approve_48.png"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:DataType="ViewModel:BookerViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="invertBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <ScrollView>
+                <StackLayout>
+                    <Frame>
+                        <StackLayout>
+                            <Label Text="Select Bus Number" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                            <CustomRenderer:CustomPicker Title="Bus Number" HorizontalTextAlignment="Center" TextColor="Black"
+                                                         ItemsSource="{Binding BusData}" ItemDisplayBinding="{Binding bus_number}" SelectedItem="{Binding AuthorizeBus}"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label Text="Bus Trip Round:" VerticalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                                <CustomRenderer:CustomEntry Text="{Binding BusTripRound}" TextColor="Black" HorizontalOptions="FillAndExpand" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <Label Margin="19,0,0,0" Text="Bus Details:" TextColor="Black" FontAttributes="Bold" FontSize="Medium"/>
+                    <Frame BorderColor="LightGray" CornerRadius="20">
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Bus Route:" VerticalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Body"/>
+                                <CustomRenderer:CustomEntry HorizontalOptions="FillAndExpand" Text="{Binding AuthorizeBus.bus_route}" TextColor="Black" IsReadOnly="True"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Bus Seats:" VerticalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Body"/>
+                                <CustomRenderer:CustomEntry HorizontalOptions="FillAndExpand" Text="{Binding AuthorizeBus.bus_seats}" TextColor="Black" IsReadOnly="True"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Driver 1 ID:" VerticalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Body"/>
+                                <CustomRenderer:CustomEntry HorizontalOptions="FillAndExpand" IsVisible="{Binding ChangeDriverOne, Converter={StaticResource invertBoolConverter}}" Text="{Binding DriverOneID}" TextColor="Black" IsReadOnly="True"/>
+                                <CustomRenderer:CustomPicker HorizontalOptions="FillAndExpand" IsVisible="{Binding ChangeDriverOne}" TextColor="Black"
+                                                             ItemsSource="{Binding BusDriverEmployee}" ItemDisplayBinding="{Binding id}" SelectedItem="{Binding SelectedDriverOneID}"/>
+                                <Button Text="{Binding ChangeDriverOne_Text}" Command="{Binding ChangeDriverOneCommand}" BackgroundColor="#0066CC" TextColor="White" FontAttributes="Bold" HeightRequest="40"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label VerticalTextAlignment="Center" Text="Driver 1 Name:" TextColor="Black" FontAttributes="Bold" FontSize="Body"/>
+                                <CustomRenderer:CustomEntry HorizontalOptions="FillAndExpand" Text="{Binding DriverOneName}" TextColor="Black" IsReadOnly="True"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Driver 2 ID:" VerticalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Body"/>
+                                <CustomRenderer:CustomEntry HorizontalOptions="FillAndExpand" IsVisible="{Binding ChangeDriverTwo, Converter={StaticResource invertBoolConverter}}" Text="{Binding DriverTwoID}" TextColor="Black" IsReadOnly="True"/>
+                                <CustomRenderer:CustomPicker HorizontalOptions="FillAndExpand" IsVisible="{Binding ChangeDriverTwo}" TextColor="Black"
+                                                             ItemsSource="{Binding BusDriverEmployee}" ItemDisplayBinding="{Binding id}" SelectedItem="{Binding SelectedDriverTwoID}"/>
+                                <Button Text="{Binding ChangeDriverTwo_Text}" Command="{Binding ChangeDriverTwoCommand}" BackgroundColor="#0066CC" TextColor="White" FontAttributes="Bold" HeightRequest="40"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label VerticalTextAlignment="Center" Text="Driver 2 Name:" TextColor="Black" FontAttributes="Bold" FontSize="Body"/>
+                                <CustomRenderer:CustomEntry HorizontalOptions="FillAndExpand" Text="{Binding DriverTwoName}" TextColor="Black" IsReadOnly="True"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Conductor ID:" VerticalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="Body"/>
+                                <CustomRenderer:CustomEntry HorizontalOptions="FillAndExpand" IsVisible="{Binding ChangeConductor, Converter={StaticResource invertBoolConverter}}" Text="{Binding ConductorID}" TextColor="Black" IsReadOnly="True"/>
+                                <CustomRenderer:CustomPicker HorizontalOptions="FillAndExpand" IsVisible="{Binding ChangeConductor}" TextColor="Black"
+                                                             ItemsSource="{Binding BusConductorEmployee}" ItemDisplayBinding="{Binding id}" SelectedItem="{Binding SelectedConductorID}"/>
+                                <Button Text="{Binding ChangeConductor_Text}" Command="{Binding ChangeConducterCommand}" BackgroundColor="#0066CC" TextColor="White" FontAttributes="Bold" HeightRequest="40"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label VerticalTextAlignment="Center" Text="Conductor Name:" TextColor="Black" FontAttributes="Bold" FontSize="Body"/>
+                                <CustomRenderer:CustomEntry HorizontalOptions="FillAndExpand" Text="{Binding ConductorName}" TextColor="Black" IsReadOnly="True"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <Button Text="Authorize" Command="{Binding AuthorizeBusTripCommand}" TextColor="White" BackgroundColor="#0066CC" Margin="20,0,20,10" CornerRadius="10"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

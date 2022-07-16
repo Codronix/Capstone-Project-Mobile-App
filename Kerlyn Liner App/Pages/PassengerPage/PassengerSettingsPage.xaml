@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customrenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             x:Class="Kerlyn_Liner_App.Pages.PassengerPage.PassengerSettingsPage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:PassengerSettingsViewModel">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Label Margin="15,15,0,0" Text="Account Details" FontAttributes="Bold"  TextColor="#0066CC" FontSize="Large"/>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Account ID:" FontAttributes="Bold" TextColor="Gray" FontSize="Body"/>
+                    <StackLayout Orientation="Horizontal">
+                        <customrenderer:CustomEntry Text="{Binding AccountID}" HorizontalOptions="FillAndExpand" TextColor="Black" IsReadOnly="True"/>
+                    </StackLayout>
+                    <Label Text="Username:" FontAttributes="Bold" TextColor="Gray" FontSize="Body"/>
+                    <StackLayout Orientation="Horizontal">
+                        <customrenderer:CustomEntry Text="{Binding Username}" HorizontalOptions="FillAndExpand" TextColor="Black" IsReadOnly="True"/>
+                    </StackLayout>
+                    <Label Text="Name:" FontAttributes="Bold" TextColor="Gray" FontSize="Body"/>
+                    <StackLayout Orientation="Horizontal">
+                        <customrenderer:CustomEntry Text="{Binding FullName}" HorizontalOptions="FillAndExpand" TextColor="Black" IsReadOnly="True"/>
+                    </StackLayout>
+                    <Label Text="Registererd Email:" FontAttributes="Bold" TextColor="Gray" FontSize="Body"/>
+                    <StackLayout Orientation="Horizontal">
+                        <customrenderer:CustomEntry Text="{Binding Email}" HorizontalOptions="FillAndExpand" TextColor="Black" IsReadOnly="True"/>
+                        <Button Text="Change" BackgroundColor="White" Command="{Binding OpenChangeEmailPageCommnad}" TextColor="Gray"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Label Margin="15,15,0,0" Text="Security" FontAttributes="Bold"  TextColor="#0066CC" FontSize="Large"/>
+            <Frame>
+                <Button Text="Change Password"
+                        TextColor="white"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        BackgroundColor="#0066CC"
+                        Command="{Binding OpenChangePasswordPageCommand}"/>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

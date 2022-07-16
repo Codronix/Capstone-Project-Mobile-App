@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:customrenderer="clr-namespace:Kerlyn_Liner_App.CustomRenderer"
+             x:Class="Kerlyn_Liner_App.Pages.LoginPage.TravelVerificationPage"
+             xmlns:ViewModel="clr-namespace:Kerlyn_Liner_App.ViewModel"
+             x:DataType="ViewModel:TravelVerificationViewModel">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Frame VerticalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Label Text="Please confirm your Travel ID:" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
+                    <customrenderer:CustomEntry Text="{Binding Travel_ID}" HorizontalOptions="FillAndExpand" TextColor="Black" HorizontalTextAlignment="Center"/>
+                    <Button Command="{Binding ConfirmCommand}" Text="Confirm" BackgroundColor="#0066CC" TextColor="White" FontSize="Medium" FontAttributes="Bold"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
